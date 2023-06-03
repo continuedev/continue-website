@@ -1,4 +1,4 @@
 [[redirects]]
   from = "/docs/*"
-  to = "https://docs.continue.dev/:splat"
+  to = "https://continuedev.netlify.app/:splat"
   status = 200
