@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/docs/*"
+  to = "https://docs.continue.dev/:splat"
+  status = 200
