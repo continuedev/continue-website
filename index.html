@@ -86,6 +86,25 @@
         const width = Math.min(600, vw);
         window.scrollTo(0, 0);
       });
+
+      window.onresize = function () {
+        const logoDiv = document.getElementById("logo-img");
+
+        const vw = Math.max(
+          document.documentElement.clientWidth || 0,
+          window.innerWidth || 0
+        );
+        const width = Math.min(600, vw);
+        logoDiv.style.width = `${
+          width * Math.max(0.3, 0.9 - (0.9 * window.scrollY) / width)
+        }px`;
+        console.log(width);
+        // Move upward
+        logoDiv.style.top = `${Math.max(
+          5,
+          Math.min(50, 50 - (window.scrollY / window.innerHeight) * 90)
+        )}vh`;
+      };
     </script>
 
     <div class="logo" id="logo-div">
