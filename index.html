@@ -1,103 +1,113 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M3JWW8N2XQ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <head>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-M3JWW8N2XQ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-    gtag('config', 'G-M3JWW8N2XQ');
-  </script>
-  <title>Continue</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    .custom-button, #email-capture input[type="email"] {
-      font-size: 24px;
-      width: 100%;
-      min-width: 500px; /* Adjusted minimum width */
-      outline: none;
-      margin: 15px;
-      padding: 7px 0 7px 14px;
-      border: 3px solid rgb(150, 150, 150);
-      box-shadow: 0px 0px 0px 1px rgb(90, 90, 90),
-        inset 0px 0px 0px 1px rgb(90, 90, 90),
-        1px 2px 0px 2px rgb(100, 100, 100);
-      border-radius: 0.3em;
-      font-family: "M PLUS 1p", sans-serif;
-      font-weight: 700;
-      font-size: 1.3em;
-    }
+      gtag("config", "G-M3JWW8N2XQ");
+    </script>
+    <title>Continue</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+    <link rel="stylesheet" href="styles.css" />
 
-    .custom-button {
-      color: rgb(50, 50, 50);
-      background: white;
-      cursor: pointer;
-      text-align: left;
-      white-space: nowrap; /* Prevent text wrapping */
-    }
-
-    .custom-button:focus {
-      box-shadow: 0px 0px 0px 1px rgb(90, 90, 90),
-        inset 0px 0px 0px 1px rgb(90, 90, 90),
-        1px 2px 0px 1px rgb(100, 100, 100);
-    }
-    
-    #email-capture input[type="email"] {
-      color: rgb(50, 50, 50);
-    }
-  </style>
-</head>
-<body lang="EN-US">
-
-  <script>
-    // Check if the key pressed is space
-    document.addEventListener("keydown", function(event) {
-      if (event.key === " ") {
-        // Redirect to the specified URL
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body lang="EN-US">
+    <script>
+      // Check if the key pressed is space
+      function gotoDocs() {
         window.location.href = "https://continue.dev/docs";
       }
-    });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === " ") {
+          // Redirect to the specified URL
+          gotoDocs();
+        }
+      });
 
-    // Function to switch between logo and email capture form
-    function toggleEmailCapture() {
-      const logoElement = document.getElementById("logo-img");
-      const emailCaptureElement = document.getElementById("email-capture");
-
-      logoElement.style.display = "none";
-      emailCaptureElement.style.display = "flex";
-    }
-
-    // Function to handle the second button
-    function handleSecondButton() {
-      const emailInput = document.getElementById("email-input").value;
-      
-      if (emailInput) {
-        const form = document.getElementById("email-capture-form");
-        form.submit();
-      } else {
-        window.location.href = "https://continue.dev/docs";
+      function scrollToBottom() {
+        window.scrollTo(0, window.innerHeight);
       }
-    }
-  </script>
 
-  <div class="logo">
-    <a style="cursor: pointer">
-      <img id="logo-img" src="./images/continue.gif" alt="Continue" onclick="toggleEmailCapture()" />
-    </a>
-  </div>
-  
-  <div id="email-capture" style="display: none; flex-direction: column; align-items: center;">
-    <form id="email-capture-form" action="https://formspree.io/f/mvonezeg" method="POST">
-      <input id="email-input" type="email" name="email" placeholder="enter your email to receive updates..." />
-      <button type="button" class="custom-button" onclick="window.location.href='https://github.com/continuedev/continue'">/feedback i'm going to give you ⭐ on GitHub</button>
-      <button type="button" class="custom-button" onclick="handleSecondButton();">/explain tell me more about continue</button>
-    </form>
-  </div>
+      // Function to handle the second button
+      function handleSecondButton() {
+        const emailInput = document.getElementById("email-input").value;
 
-</body>
+        if (emailInput) {
+          const form = document.getElementById("email-capture-form");
+          form.submit();
+        } else {
+          window.location.href = "https://continue.dev/docs";
+        }
+      }
+
+      // Scrolling effects
+      window.addEventListener("scroll", (e) => {
+        const logoDiv = document.getElementById("logo-img");
+        logoDiv.style.width = `${Math.max(
+          30,
+          90 - (90 * window.scrollY) / window.innerHeight
+        )}vw`;
+        // Move upward
+        logoDiv.style.top = `${Math.max(
+          5,
+          Math.min(50, 50 - (window.scrollY / window.innerHeight) * 90)
+        )}vh`;
+      });
+    </script>
+
+    <div class="logo" id="logo-div">
+      <a style="cursor: pointer">
+        <img
+          id="logo-img"
+          src="./images/continue.gif"
+          alt="Continue"
+          onclick="scrollToBottom();"
+        />
+      </a>
+    </div>
+
+    <div id="email-capture">
+      <form
+        id="email-capture-form"
+        action="https://formspree.io/f/mvonezeg"
+        method="POST"
+      >
+        <button
+          type="button"
+          class="custom-button"
+          onclick="window.location.href='https://github.com/continuedev/continue'"
+        >
+          Leave a ⭐ on GitHub
+        </button>
+        <button
+          type="button"
+          class="custom-button"
+          onclick="handleSecondButton();"
+        >
+          Read the Docs
+        </button>
+        <input
+          id="email-input"
+          type="email"
+          name="email"
+          placeholder="Email me updates"
+        />
+      </form>
+    </div>
+  </body>
 </html>
