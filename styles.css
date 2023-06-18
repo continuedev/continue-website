@@ -17,7 +17,6 @@ body {
 }
 
 .logo img {
-  width: 90vw;
   transform: translate(-50%, -50%);
   position: fixed;
   top: 50%;

@@ -58,15 +58,33 @@
       // Scrolling effects
       window.addEventListener("scroll", (e) => {
         const logoDiv = document.getElementById("logo-img");
-        logoDiv.style.width = `${Math.max(
-          30,
-          90 - (90 * window.scrollY) / window.innerHeight
-        )}vw`;
+
+        const vw = Math.max(
+          document.documentElement.clientWidth || 0,
+          window.innerWidth || 0
+        );
+        const width = Math.min(600, vw);
+        logoDiv.style.width = `${
+          width * Math.max(0.3, 0.9 - (0.9 * window.scrollY) / width)
+        }px`;
+        console.log(width);
         // Move upward
         logoDiv.style.top = `${Math.max(
           5,
           Math.min(50, 50 - (window.scrollY / window.innerHeight) * 90)
         )}vh`;
+      });
+
+      document.addEventListener("DOMContentLoaded", function (event) {
+        // Scroll to the top
+        const logoDiv = document.getElementById("logo-img");
+
+        const vw = Math.max(
+          document.documentElement.clientWidth || 0,
+          window.innerWidth || 0
+        );
+        const width = Math.min(600, vw);
+        window.scrollTo(0, 0);
       });
     </script>
 
@@ -92,7 +110,7 @@
           class="custom-button"
           onclick="window.location.href='https://github.com/continuedev/continue'"
         >
-          Leave a ⭐ on GitHub
+          Give a ⭐ on GitHub
         </button>
         <button
           type="button"
