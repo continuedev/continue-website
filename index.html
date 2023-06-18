@@ -15,6 +15,42 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .custom-button, #email-capture input[type="email"] {
+      font-size: 24px;
+      width: 100%;
+      min-width: 500px; /* Adjusted minimum width */
+      outline: none;
+      margin: 15px;
+      padding: 7px 0 7px 14px;
+      border: 3px solid rgb(150, 150, 150);
+      box-shadow: 0px 0px 0px 1px rgb(90, 90, 90),
+        inset 0px 0px 0px 1px rgb(90, 90, 90),
+        1px 2px 0px 2px rgb(100, 100, 100);
+      border-radius: 0.3em;
+      font-family: "M PLUS 1p", sans-serif;
+      font-weight: 700;
+      font-size: 1.3em;
+    }
+
+    .custom-button {
+      color: rgb(50, 50, 50);
+      background: white;
+      cursor: pointer;
+      text-align: left;
+      white-space: nowrap; /* Prevent text wrapping */
+    }
+
+    .custom-button:focus {
+      box-shadow: 0px 0px 0px 1px rgb(90, 90, 90),
+        inset 0px 0px 0px 1px rgb(90, 90, 90),
+        1px 2px 0px 1px rgb(100, 100, 100);
+    }
+    
+    #email-capture input[type="email"] {
+      color: rgb(50, 50, 50);
+    }
+  </style>
 </head>
 <body lang="EN-US">
 
@@ -33,7 +69,19 @@
       const emailCaptureElement = document.getElementById("email-capture");
 
       logoElement.style.display = "none";
-      emailCaptureElement.style.display = "block";
+      emailCaptureElement.style.display = "flex";
+    }
+
+    // Function to handle the second button
+    function handleSecondButton() {
+      const emailInput = document.getElementById("email-input").value;
+      
+      if (emailInput) {
+        const form = document.getElementById("email-capture-form");
+        form.submit();
+      } else {
+        window.location.href = "https://continue.dev/docs";
+      }
     }
   </script>
 
@@ -43,9 +91,11 @@
     </a>
   </div>
   
-  <div id="email-capture" style="display: none;">
-    <form action="https://formspree.io/f/mvonezeg" method="POST">
-      <input type="email" name="email" placeholder="enter your email to recieve updates..." required />
+  <div id="email-capture" style="display: none; flex-direction: column; align-items: center;">
+    <form id="email-capture-form" action="https://formspree.io/f/mvonezeg" method="POST">
+      <input id="email-input" type="email" name="email" placeholder="enter your email to receive updates..." />
+      <button type="button" class="custom-button" onclick="window.location.href='https://github.com/continuedev/continue'">/feedback i'm going to give you ⭐ on GitHub</button>
+      <button type="button" class="custom-button" onclick="handleSecondButton();">/explain tell me more about continue</button>
     </form>
   </div>
 
