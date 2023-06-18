@@ -1,53 +1,113 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M3JWW8N2XQ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <head>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-M3JWW8N2XQ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-    gtag('config', 'G-M3JWW8N2XQ');
-  </script>
-  <title>Continue</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body lang="EN-US">
+      gtag("config", "G-M3JWW8N2XQ");
+    </script>
+    <title>Continue</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+    <link rel="stylesheet" href="styles.css" />
 
-  <script>
-    // Check if the key pressed is space
-    document.addEventListener("keydown", function(event) {
-      if (event.key === " ") {
-        // Redirect to the specified URL
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body lang="EN-US">
+    <script>
+      // Check if the key pressed is space
+      function gotoDocs() {
         window.location.href = "https://continue.dev/docs";
       }
-    });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === " ") {
+          // Redirect to the specified URL
+          gotoDocs();
+        }
+      });
 
-    // Function to switch between logo and email capture form
-    function toggleEmailCapture() {
-      const logoElement = document.getElementById("logo-img");
-      const emailCaptureElement = document.getElementById("email-capture");
+      function scrollToBottom() {
+        window.scrollTo(0, window.innerHeight);
+      }
 
-      logoElement.style.display = "none";
-      emailCaptureElement.style.display = "block";
-    }
-  </script>
+      // Function to handle the second button
+      function handleSecondButton() {
+        const emailInput = document.getElementById("email-input").value;
 
-  <div class="logo">
-    <a style="cursor: pointer">
-      <img id="logo-img" src="./images/continue.gif" alt="Continue" onclick="toggleEmailCapture()" />
-    </a>
-  </div>
-  
-  <div id="email-capture" style="display: none;">
-    <form action="https://formspree.io/f/mvonezeg" method="POST">
-      <input type="email" name="email" placeholder="enter your email to recieve updates..." required />
-    </form>
-  </div>
+        if (emailInput) {
+          const form = document.getElementById("email-capture-form");
+          form.submit();
+        } else {
+          window.location.href = "https://continue.dev/docs";
+        }
+      }
 
-</body>
+      // Scrolling effects
+      window.addEventListener("scroll", (e) => {
+        const logoDiv = document.getElementById("logo-img");
+        logoDiv.style.width = `${Math.max(
+          30,
+          90 - (90 * window.scrollY) / window.innerHeight
+        )}vw`;
+        // Move upward
+        logoDiv.style.top = `${Math.max(
+          5,
+          Math.min(50, 50 - (window.scrollY / window.innerHeight) * 90)
+        )}vh`;
+      });
+    </script>
+
+    <div class="logo" id="logo-div">
+      <a style="cursor: pointer">
+        <img
+          id="logo-img"
+          src="./images/continue.gif"
+          alt="Continue"
+          onclick="scrollToBottom();"
+        />
+      </a>
+    </div>
+
+    <div id="email-capture">
+      <form
+        id="email-capture-form"
+        action="https://formspree.io/f/mvonezeg"
+        method="POST"
+      >
+        <button
+          type="button"
+          class="custom-button"
+          onclick="window.location.href='https://github.com/continuedev/continue'"
+        >
+          Leave a ⭐ on GitHub
+        </button>
+        <button
+          type="button"
+          class="custom-button"
+          onclick="handleSecondButton();"
+        >
+          Read the Docs
+        </button>
+        <input
+          id="email-input"
+          type="email"
+          name="email"
+          placeholder="Email me updates"
+        />
+      </form>
+    </div>
+  </body>
 </html>
